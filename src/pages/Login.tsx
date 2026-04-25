@@ -1,0 +1,241 @@
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { Mail, Lock, ArrowRight, Loader2, Eye, EyeOff, Smartphone, ShieldCheck } from 'lucide-react'
+import { Capacitor } from '@capacitor/core'
+import api from '../services/api'
+import { biometricService } from '../services/biometric'
+
+const isMobile = Capacitor.isNativePlatform()
+
+const Login = ({ onLogin }: { onLogin: () => void }) => {
+  const [email, setEmail] = useState('')
+  const [senha, setSenha] = useState('')
+  const [mostrarSenha, setMostrarSenha] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
+  const [biometriaDisponivel, setBiometriaDisponivel] = useState(false)
+  const [credenciaisSalvas, setCredenciaisSalvas] = useState(false)
+  const [salvarBiometriaChecked, setSalvarBiometriaChecked] = useState(false)
+  const [mostrarTelaSalvarBiometria, setMostrarTelaSalvarBiometria] = useState(false)
+
+  useEffect(() => {
+    const checkBiometria = async () => {
+      try {
+        const available = await biometricService.isAvailable()
+        const hasCreds = await biometricService.hasStoredCredentials()
+        setBiometriaDisponivel(available.isAvailable)
+        setCredenciaisSalvas(hasCreds)
+      } catch (e) {
+        setBiometriaDisponivel(false)
+        setCredenciaisSalvas(false)
+      }
+    }
+    checkBiometria()
+  }, [])
+
+  const handleLogin = async (emailVal: string, senhaVal: string, salvarBiometria: boolean = false) => {
+    setIsLoading(true)
+    setError('')
+
+    try {
+      const response = await api.post('/auth/login', { email: emailVal, senha: senhaVal })
+      const { token, user } = response.data
+      
+      localStorage.setItem('@SaaS:token', token)
+      localStorage.setItem('@SaaS:user', JSON.stringify(user))
+      localStorage.setItem('@SaaS:email', emailVal)
+      
+      if (salvarBiometria && biometriaDisponivel) {
+        await biometricService.storeCredentials(emailVal, senhaVal)
+        setCredenciaisSalvas(true)
+      }
+      
+      onLogin()
+    } catch (err: any) {
+      setError(err.response?.data?.error || 'Erro ao entrar. Tente novamente.')
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const handleEmailSenha = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (biometriaDisponivel && !credenciaisSalvas) {
+      setMostrarTelaSalvarBiometria(true)
+    } else {
+      handleLogin(email, senha, false)
+    }
+  }
+
+  const handleConfirmarSalvarBiometria = () => {
+    setMostrarTelaSalvarBiometria(false)
+    handleLogin(email, senha, salvarBiometriaChecked)
+  }
+
+  const handleBiometriaDirect = async () => {
+    if (!credenciaisSalvas) return
+    
+    setIsLoading(true)
+    const creds = await biometricService.authenticateAndGetCredentials()
+    if (creds) {
+      await handleLogin(creds.email, creds.senha, false)
+    } else {
+      setError('Autenticação biométrica falhou')
+    }
+    setIsLoading(false)
+  }
+
+  if (isMobile && mostrarTelaSalvarBiometria) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center p-6">
+        <div className="w-full max-w-md space-y-8 animate-slide-up">
+          <div className="flex flex-col items-center gap-4">
+            <img src="/Logo.png?v=3" alt="Logo" className="w-16 h-16 rounded-xl" />
+            <h1 className="text-3xl font-bold">Gestão Financeira</h1>
+          </div>
+
+          <div className="premium-card">
+            <div className="text-center mb-6">
+              <div className="w-16 h-16 mx-auto mb-3 bg-emerald-500/20 rounded-full flex items-center justify-center">
+                <Smartphone className="w-8 h-8 text-emerald-400" />
+              </div>
+              <h2 className="text-xl font-bold">Olá, {email.split('@')[0]}!</h2>
+              <p className="text-slate-400 text-sm">Deseja usar biometria para login rápido?</p>
+            </div>
+            
+            <div className="space-y-4">
+              <label className="flex items-center gap-3 p-4 bg-slate-900/50 border border-slate-700/50 rounded-xl cursor-pointer hover:bg-slate-800/50 transition-colors">
+                <input 
+                  type="checkbox" 
+                  checked={salvarBiometriaChecked}
+                  onChange={(e) => setSalvarBiometriaChecked(e.target.checked)}
+                  className="w-5 h-5 rounded border-slate-600 bg-slate-900 text-emerald-500 focus:ring-emerald-500"
+                />
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <ShieldCheck className="w-5 h-5 text-emerald-400" />
+                    <span className="font-medium">Salvar credenciais</span>
+                  </div>
+                  <p className="text-slate-400 text-sm mt-1">Entre com biometria nas próximas vezes</p>
+                </div>
+              </label>
+
+              <button 
+                onClick={handleConfirmarSalvarBiometria}
+                disabled={isLoading}
+                className="w-full btn-primary flex items-center justify-center gap-2 py-3"
+              >
+                {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Continuar'}
+              </button>
+            </div>
+            
+            <button 
+              onClick={() => {
+                setMostrarTelaSalvarBiometria(false)
+                handleLogin(email, senha, false)
+              }}
+              className="w-full mt-3 py-2 text-slate-400 hover:text-white text-sm"
+            >
+              Agora não
+            </button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="min-h-screen bg-background flex items-center justify-center p-6">
+      <div className="w-full max-w-md space-y-8 animate-slide-up">
+        <div className="flex flex-col items-center gap-4">
+          <img src="/Logo.png?v=3" alt="Logo" className="w-16 h-16 rounded-xl" />
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">
+            Gestão Financeira
+          </h1>
+          <p className="text-slate-400">Entre para gerenciar suas finanças</p>
+        </div>
+
+        <div className="premium-card">
+          <form onSubmit={handleEmailSenha} className="space-y-6">
+            {error && (
+              <div className="p-4 bg-rose-500/10 border border-rose-500/20 rounded-xl text-rose-400 text-sm text-center">
+                {error}
+              </div>
+            )}
+            
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-slate-400 ml-1">E-mail</label>
+              <div className="relative">
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+                <input 
+                  type="email" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="seu@email.com"
+                  required
+                  className="w-full bg-slate-900/50 border border-slate-700/50 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-sky-500/50 transition-all"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-slate-400 ml-1">Senha</label>
+              <div className="relative">
+                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+                <input 
+                  type={mostrarSenha ? "text" : "password"} 
+                  value={senha}
+                  onChange={(e) => setSenha(e.target.value)}
+                  placeholder="••••••••"
+                  required
+                  className="w-full bg-slate-900/50 border border-slate-700/50 rounded-xl py-3 pl-12 pr-12 focus:outline-none focus:ring-2 focus:ring-sky-500/50 transition-all"
+                />
+                <button
+                  type="button"
+                  onClick={() => setMostrarSenha(!mostrarSenha)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white"
+                >
+                  {mostrarSenha ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                </button>
+              </div>
+            </div>
+
+            <button 
+              disabled={isLoading}
+              className="w-full btn-primary flex items-center justify-center gap-2 py-3"
+            >
+              {isLoading ? (
+                <Loader2 className="w-5 h-5 animate-spin" />
+              ) : (
+                <>
+                  Entrar
+                  <ArrowRight className="w-5 h-5" />
+                </>
+              )}
+            </button>
+          </form>
+
+          {isMobile && biometriaDisponivel && credenciaisSalvas && (
+            <button 
+              onClick={handleBiometriaDirect}
+              disabled={isLoading}
+              className="w-full mt-4 btn-primary bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center gap-2 py-3"
+            >
+              <Smartphone className="w-5 h-5 text-emerald-400" />
+              <span className="text-emerald-400">Entrar com Biometria</span>
+            </button>
+          )}
+
+          <p className="mt-8 text-center text-slate-400 text-sm">
+            Não tem uma conta?{' '}
+            <Link to="/register" className="text-sky-400 hover:text-sky-300 font-semibold underline-offset-4 hover:underline">
+              Crie uma agora
+            </Link>
+          </p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Login
