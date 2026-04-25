@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { Mail, Lock, ArrowRight, Loader2, Eye, EyeOff, Smartphone, ShieldCheck } from 'lucide-react'
 import { Capacitor } from '@capacitor/core'
 import api from '../services/api'
-import { biometricService } from '../services/biometric'
 
 const isMobile = Capacitor.isNativePlatform()
 
@@ -19,13 +18,15 @@ const Login = ({ onLogin }: { onLogin: () => void }) => {
   const [mostrarTelaSalvarBiometria, setMostrarTelaSalvarBiometria] = useState(false)
 
   useEffect(() => {
+    if (!isMobile) return
+    const { biometricService } = require('../services/biometric')
     const checkBiometria = async () => {
       try {
         const available = await biometricService.isAvailable()
         const hasCreds = await biometricService.hasStoredCredentials()
         setBiometriaDisponivel(available.isAvailable)
         setCredenciaisSalvas(hasCreds)
-      } catch (e) {
+      } catch {
         setBiometriaDisponivel(false)
         setCredenciaisSalvas(false)
       }
@@ -45,7 +46,8 @@ const Login = ({ onLogin }: { onLogin: () => void }) => {
       localStorage.setItem('@SaaS:user', JSON.stringify(user))
       localStorage.setItem('@SaaS:email', emailVal)
       
-      if (salvarBiometria && biometriaDisponivel) {
+      if (isMobile && salvarBiometria && biometriaDisponivel) {
+        const { biometricService } = require('../services/biometric')
         await biometricService.storeCredentials(emailVal, senhaVal)
         setCredenciaisSalvas(true)
       }
@@ -60,7 +62,7 @@ const Login = ({ onLogin }: { onLogin: () => void }) => {
 
   const handleEmailSenha = (e: React.FormEvent) => {
     e.preventDefault()
-    if (biometriaDisponivel && !credenciaisSalvas) {
+    if (isMobile && !credenciaisSalvas && biometriaDisponivel) {
       setMostrarTelaSalvarBiometria(true)
     } else {
       handleLogin(email, senha, false)
@@ -73,13 +75,18 @@ const Login = ({ onLogin }: { onLogin: () => void }) => {
   }
 
   const handleBiometriaDirect = async () => {
-    if (!credenciaisSalvas) return
+    if (!isMobile || !credenciaisSalvas) return
     
     setIsLoading(true)
-    const creds = await biometricService.authenticateAndGetCredentials()
-    if (creds) {
-      await handleLogin(creds.email, creds.senha, false)
-    } else {
+    try {
+      const { biometricService } = require('../services/biometric')
+      const creds = await biometricService.authenticateAndGetCredentials()
+      if (creds) {
+        await handleLogin(creds.email, creds.senha, false)
+      } else {
+        setError('Autenticação biométrica falhou')
+      }
+    } catch {
       setError('Autenticação biométrica falhou')
     }
     setIsLoading(false)
@@ -91,7 +98,7 @@ const Login = ({ onLogin }: { onLogin: () => void }) => {
         <div className="w-full max-w-md space-y-8 animate-slide-up">
           <div className="flex flex-col items-center gap-4">
             <img src="/Logo.png?v=3" alt="Logo" className="w-16 h-16 rounded-xl" />
-            <h1 className="text-3xl font-bold">Gestão Financeira</h1>
+            <h1 className="text-3xl font-bold">Gest��o Financeira</h1>
           </div>
 
           <div className="premium-card">
