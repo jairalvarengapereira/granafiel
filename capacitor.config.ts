@@ -6,6 +6,12 @@ const config: CapacitorConfig = {
   webDir: 'dist',
   server: {
     androidBuildPath: 'FluxoFinan-Mobile/app/build/outputs/apk/debug'
+  },
+  resources: {
+    android: {
+      splash: 'resources/logo.png',
+      launcherIcon: 'resources/logo.png'
+    }
   }
 };
 
