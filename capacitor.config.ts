@@ -1,11 +1,11 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.fluxofinan.app',
-  appName: 'FluxoFinan',
+  appId: 'com.granacerta.app',
+  appName: 'Granacerta',
   webDir: 'dist',
   server: {
-    androidBuildPath: 'FluxoFinan-Mobile/app/build/outputs/apk/debug'
+    androidBuildPath: 'Granacerta-Mobile/app/build/outputs/apk/debug'
   },
   resources: {
     android: {

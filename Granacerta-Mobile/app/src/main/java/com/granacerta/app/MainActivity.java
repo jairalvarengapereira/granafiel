@@ -1,4 +1,4 @@
-package com.fluxofinan.app;
+package com.granacerta.app;
 
 import com.getcapacitor.BridgeActivity;
 
