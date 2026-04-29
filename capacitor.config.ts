@@ -2,10 +2,10 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.granacerta.app',
-  appName: 'Granacerta',
+  appName: 'Granafiel',
   webDir: 'dist',
   server: {
-    androidBuildPath: 'Granacerta-Mobile/app/build/outputs/apk/debug'
+    androidBuildPath: 'Granafiel-Mobile/app/build/outputs/apk/debug'
   },
   resources: {
     android: {

@@ -185,7 +185,7 @@ const TransactionModal = ({ isOpen, onClose, editingTransaction = null, tipoInic
                 className="w-full bg-slate-900/50 border border-slate-700/50 rounded-xl py-3 pl-12 pr-4 appearance-none focus:outline-none focus:ring-2 focus:ring-sky-500/50 transition-all"
               >
                 <option value="">Selecione uma categoria</option>
-                {categories.map(cat => (
+                {categories.sort((a: any, b: any) => a.nome.localeCompare(b.nome, 'pt-BR')).map(cat => (
                   <option key={cat.id} value={cat.id}>{cat.nome}</option>
                 ))}
               </select>

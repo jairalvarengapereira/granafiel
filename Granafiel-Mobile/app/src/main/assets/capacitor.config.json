@@ -1,0 +1,8 @@
+{
+	"appId": "com.granacerta.app",
+	"appName": "Granafiel",
+	"webDir": "dist",
+	"server": {
+		"androidBuildPath": "Granacerta-Mobile/app/build/outputs/apk/debug"
+	}
+}

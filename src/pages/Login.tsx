@@ -157,7 +157,7 @@ const Login = ({ onLogin }: { onLogin: () => void }) => {
         <div className="flex flex-col items-center gap-4">
           <img src="/Logo.png?v=3" alt="Logo" className="w-16 h-16 rounded-xl" />
           <h1 className="text-3xl font-bold bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">
-            Granacerta
+            Granafiel
           </h1>
           <p className="text-slate-400">Entre para gerenciar suas finanças</p>
         </div>

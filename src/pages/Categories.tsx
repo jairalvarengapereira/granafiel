@@ -58,7 +58,7 @@ const Categories = () => {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {categories?.map((c: any) => (
+          {categories?.sort((a: any, b: any) => a.nome.localeCompare(b.nome, 'pt-BR')).map((c: any) => (
             <div key={c.id} className="premium-card flex items-center justify-between group hover:border-sky-500/30 transition-all cursor-default">
               <div className="flex items-center gap-4">
                 <div className={`p-3 rounded-2xl ${
