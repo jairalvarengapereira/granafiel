@@ -56,7 +56,7 @@ function App() {
               >
                 <Menu className="w-6 h-6" />
               </button>
-              <img src="/Logo.png?v=3" alt="Logo" className="h-8 w-8" />
+              <img src="/Logo.png?v=3" alt="Logo" className="h-16 w-16" />
               <div className="w-10" /> {/* Spacer */}
             </header>
 
