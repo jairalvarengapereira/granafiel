@@ -7,16 +7,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#0f172a',
-        surface: '#1e293b',
+        background: '#081A2A',
+        surface: '#102C44',
         primary: {
-          DEFAULT: '#38bdf8',
-          hover: '#0ea5e9',
+          DEFAULT: '#C5A059',
+          hover: '#8B6D36',
+          light: '#E8D092',
         },
         accent: {
-          rose: '#fb7185',
-          emerald: '#34d399',
-          amber: '#fbbf24',
+          gold: '#C5A059',
+          goldLight: '#E8D092',
+          goldDark: '#8B6D36',
+          navy: '#102C44',
+          navyDeep: '#081A2A',
         }
       },
       fontFamily: {

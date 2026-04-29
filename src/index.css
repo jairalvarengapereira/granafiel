@@ -8,18 +8,46 @@
 }
 
 .glass {
-  background-color: var(--color-surface);
+  background-color: rgba(16, 44, 68, 0.8);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(51, 65, 85, 0.5); /* Slate 700 with opacity */
+  border: 1px solid rgba(197, 160, 89, 0.3);
 }
 
 .premium-card {
-  @apply rounded-2xl p-6 transition-all duration-300 hover:shadow-2xl hover:shadow-sky-500/10;
-  background-color: var(--color-surface);
+  @apply rounded-2xl p-6 transition-all duration-300;
+  background-color: rgba(16, 44, 68, 0.8);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(51, 65, 85, 0.5);
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(197, 160, 89, 0.1);
 }
 
 .btn-primary {
-  @apply bg-primary px-6 py-2 rounded-xl font-semibold text-background transition-all hover:bg-primary-hover active:scale-95;
+  @apply px-6 py-2 rounded-xl font-semibold transition-all active:scale-95;
+  background-color: #C5A059;
+  color: #081A2A;
+}
+.btn-primary:hover {
+  background-color: #E8D092;
+}
+
+.text-primary { color: #C5A059; }
+.text-primary-light { color: #E8D092; }
+.text-primary-dark { color: #8B6D36; }
+.bg-primary { background-color: #C5A059; }
+.bg-primary-light { background-color: #E8D092; }
+.border-primary { border-color: #C5A059; }
+
+.shadow-gold { box-shadow: 0 0 20px rgba(197, 160, 89, 0.2); }
+
+@layer utilities {
+  .text-gold { color: #C5A059; }
+  .text-gold-light { color: #E8D092; }
+  .bg-gold { background-color: #C5A059; }
+  .bg-gold-light { background-color: #E8D092; }
+  .border-gold { border-color: #C5A059; }
+  .shadow-gold { box-shadow: 0 0 20px rgba(197, 160, 89, 0.2); }
+  
+  .text-navy { color: #102C44; }
+  .bg-navy { background-color: #102C44; }
+  .bg-navy-deep { background-color: #081A2A; }
 }
