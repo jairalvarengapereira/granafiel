@@ -5,7 +5,8 @@ const config: CapacitorConfig = {
   appName: 'Granafiel',
   webDir: 'dist',
   server: {
-    androidBuildPath: 'Granafiel-Android/Granafiel.0.0.1-debug.apk'
+    androidBuildPath: 'Granafiel-Android/Granafiel.apk'
+  },
   resources: {
     android: {
       splash: 'resources/logo.png',

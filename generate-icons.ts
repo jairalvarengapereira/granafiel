@@ -3,7 +3,7 @@ import path from 'path'
 import fs from 'fs'
 
 const logoPath = path.resolve('src/assets/Logo.png')
-const resDir = path.resolve('Granafiel-Mobile/app/src/main/res')
+const resDir = path.resolve('Granafiel-Android/app/src/main/res')
 
 const sizes = [
   { dir: 'mipmap-mdpi', size: 48 },
