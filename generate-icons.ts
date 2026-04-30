@@ -2,7 +2,7 @@ import sharp from 'sharp'
 import path from 'path'
 import fs from 'fs'
 
-const logoPath = path.resolve('src/assets/Logo.png')
+const logoPath = path.resolve('public/Logo.png')
 const resDir = path.resolve('Granafiel-Android/app/src/main/res')
 
 const sizes = [
