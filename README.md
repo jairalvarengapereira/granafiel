@@ -4,7 +4,7 @@
 
 <div align="center">
 
-<img src="public/Logo.png" alt="Logo Granafiel" width="120" />
+<img src="public/Logo.png" alt="Logo Granafiel" width="400" />
 
 ![React](https://img.shields.io/badge/React-19.2.4-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
