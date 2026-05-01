@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-import { LayoutDashboard, Receipt, Tag, LogOut, X, BarChart3 } from 'lucide-react'
+import { LayoutDashboard, Receipt, Tag, LogOut, X, BarChart3, BookOpen } from 'lucide-react'
 
 interface SidebarProps {
   onLogout: () => void
@@ -22,6 +22,7 @@ const Sidebar = ({ onLogout, isOpen, onClose }: SidebarProps) => {
     { name: 'Transações', path: '/transactions', icon: Receipt },
     { name: 'Comparativo', path: '/comparison', icon: BarChart3 },
     { name: 'Categorias', path: '/categories', icon: Tag },
+    { name: 'Manual', path: '/manual', icon: BookOpen, external: true },
     { name: 'Sair', path: '/logout', icon: LogOut, isLogout: true },
   ]
 
@@ -63,6 +64,20 @@ const Sidebar = ({ onLogout, isOpen, onClose }: SidebarProps) => {
                 <Icon className="w-5 h-5" />
                 <span className="font-medium">{item.name}</span>
               </button>
+            )
+          }
+
+          if (item.external) {
+            return (
+              <Link
+                key={item.path}
+                to={item.path}
+                onClick={onClose}
+                className="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group text-slate-400 hover:text-white hover:bg-slate-800"
+              >
+                <Icon className="w-5 h-5" />
+                <span className="font-medium">{item.name}</span>
+              </Link>
             )
           }
           

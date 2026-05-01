@@ -9,6 +9,7 @@ import Categories from './pages/Categories'
 import Comparison from './pages/Comparison'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Manual from './pages/Manual'
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null)
@@ -101,6 +102,10 @@ function App() {
             <Route 
               path="/comparison" 
               element={isAuthenticated ? <Comparison /> : <Navigate to="/login" />} 
+            />
+            <Route 
+              path="/manual" 
+              element={<Manual />} 
             />
 <Route path="*" element={<Navigate to={isAuthenticated ? "/" : "/login"} />} />
             </Routes>

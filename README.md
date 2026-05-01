@@ -1,229 +1,199 @@
-# Gestão Financeira - Frontend
+# Granafiel
+
+## 🚀 Sistema de Gestão Financeira Pessoal
 
 <div align="center">
 
-<img src="src/assets/Logo.png" alt="Logo" width="100" />
+<img src="public/Logo.png" alt="Logo Granafiel" width="120" />
 
 ![React](https://img.shields.io/badge/React-19.2.4-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.2.2-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-8.0.1-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Capacitor](https://img.shields.io/badge/Capacitor-8.3.1-00D8FF?style=for-the-badge&logo=capacitor&logoColor=white)
 
-Uma aplicação web moderna para gerenciamento de finanças pessoais, desenvolvida com React, TypeScript e Tailwind CSS.
+Uma solução completa para controle financeiro pessoal com versão web e mobile. Gerencie suas finanças de forma simples, segura e moderna.
 
-
+[**Acessar Web**](https://granafiel.netlify.app) &nbsp;|&nbsp; [**Baixar APK**](https://github.com/jairalvarengapereira/granafiel/raw/main/Granafiel.apk) &nbsp;|&nbsp; [**Manual do Usuário**](MANUAL.md)
 
 </div>
 
 ---
 
-## 📋 Sobre o Projeto
+## 🎯 Por que usar o Granafiel?
 
-O **Gestão Financeira** é uma aplicação completa para controle de receitas e despesas pessoais. Com uma interface intuitiva e visual moderna, você pode acompanhar sua situação financeira, categorizar transações e visualizar relatórios gráficos do seu fluxo de caixa.
-
----
-
-## 🖼️ Screenshots
-
-### 🔐 Login
-![Dashboard](src/assets/Screenshot_1.png)
-
-### 📊 Dashboard
-![Transações](src/assets/Screenshot_2.png)  
-![Comparativo](src/assets/Screenshot_3.png)
-
-### 💰 Transações
-![Mobile Dashboard](src/assets/Screenshot_5.png)
-
-### 📈 Comparativo Mensal
-![Mobile Transações](src/assets/Screenshot_6.png)  
-![Mobile Comparativo](src/assets/Screenshot_7.png)
-
-### 📁 Categorias
-![Login](src/assets/Screenshot_8.png)
-
-### 📱 Menu
-![Categorias](src/assets/Screenshot_4.png)
+| Recurso | Descrição |
+|---------|-----------|
+| 💰 **Controle Total** | Acompanhe receitas e despesas em um só lugar |
+| 📱 **Multiplataforma** | Acesse via web ou instale no celular |
+| 🔐 **Segurança** | Autenticação biométrica (mobile) e tokens JWT |
+| 🎤 **Entrada por Voz** | Grave suas transações falando (mobile) |
+| 📊 **Gráficos Inteligentes** | Visualize seu fluxo de caixa |
+| 🔄 **Sincronização** | Dados sempre atualizados |
 
 ---
 
-## 🚀 Funcionalidades
+## 📸 Screenshots
 
-### 🔐 Autenticação
+### 🖥️ Versão Web
+
+| Login | Registro |
+|-------|----------|
+| <img src="public/images/login.jpeg" width="300" /> | <img src="public/images/register.jpeg" width="300" /> |
+
+| Dashboard | Transações |
+|-----------|------------|
+| <img src="public/images/dashboard.jpeg" width="300" /> | <img src="public/images/transactions.jpeg" width="300" /> |
+
+| Adicionar Transação | Categorias |
+|---------------------|-------------|
+| <img src="public/images/add-transaction.jpeg" width="300" /> | <img src="public/images/categories.jpeg" width="300" /> |
+
+### 📱 Versão Mobile
+
+| Comparativo | Entrada por Voz |
+|--------------|----------------|
+| <img src="public/images/comparison.jpeg" width="150" /> | <img src="public/images/voice-input.jpeg" width="150" /> |
+
+| Autenticação Biométrica | Gráficos |
+|-------------------------|----------|
+| <img src="public/images/biometric-auth.jpeg" width="150" /> | <img src="public/images/chart-income.jpeg" width="150" /> |
+
+---
+
+## ✨ Funcionalidades
+
+### 🔐 Autenticação Segura
 - Login e registro de usuários
-- Tokens JWT para autenticação segura
-- Persistência de sessão
-- Interface personalizada com logo
+- Tokens JWT para sessão segura
+- **Biometria** (impressão digital / rosto) no mobile
 
-### 💰 Transações
-- Criação, edição e exclusão de transações
-- Categorização de receitas e despesas
-- Status de pagamento (pago/pendente)
-- Filtro por período (mensal)
-- Busca por descrição ou categoria
+### 💰 Gestão de Transações
+- Criar, editar e excluir transações
+- Categorização automática
+- Status: Pago ou Pendente
+- Filtro por período
 
-### 📊 Dashboard
-- Saldo consolidado em tempo real
-- Entradas e saídas do mês atual
-- Lista das últimas receitas e despesas
-- Gráfico de fluxo de caixa (área)
+### 📊 Dashboard Inteligente
+- Saldo em tempo real
+- Gráfico de fluxo de caixa
+- Resumo do mês atual
 
-### 📈 Comparativo Mensal
-- Gráfico de barras comparando receitas vs despesas
-- Ranking das top 5 categorias de despesas
-- Gráfico de pizza com distribuição de despesas por categoria
-- Filtro por período (todos os meses ou mensal)
+### 📈 Relatórios e Comparativos
+- Gráfico de barras (receitas vs despesas)
+- Top 5 categorias de gastos
+- Gráfico de pizza por categoria
+- Comparativo entre meses
 
-### 📁 Categorias
-- Criação e gerenciamento de categorias
-- Ícones para identificação visual
-- Categorias para receitas e despesas
+### 🎤 Entrada por Voz (Mobile)
+- Grave transações falando
+- O app entende valores e categorias
+- Muito mais rápido e prático
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## 🛠️ Tecnologias
 
-| Tecnologia | Descrição |
+| Categoria | Tecnologia |
 |------------|------------|
-| **React 19** | Biblioteca principal para interface de usuário |
-| **TypeScript** | Tipagem estática para código mais seguro |
-| **Vite** | Build tool rápido e moderno |
-| **Tailwind CSS** | Framework CSS utilitário |
-| **Recharts** | Biblioteca de gráficos |
-| **React Router** | Roteamento de páginas |
-| **TanStack Query** | Gerenciamento de estado e caching |
-| **Axios** | Cliente HTTP para API |
-| **Lucide React** | Biblioteca de ícones |
-| **Framer Motion** | Animações suaves |
+| **Frontend** | React 19, TypeScript, Vite |
+| **Estilização** | Tailwind CSS 4 |
+| **Mobile** | Capacitor (Android) |
+| **Gráficos** | Recharts |
+| **Animações** | Framer Motion |
+| **Ícones** | Lucide React |
+| **API** | Axios, TanStack Query |
+| **Auth** | JWT, Biometria (Capacitor) |
+| **Voz** | Speech Recognition (Capacitor) |
 
 ---
 
-## 📁 Estrutura do Projeto
+## 📂 Estrutura do Projeto
 
 ```
-src/
-├── assets/                # Imagens e recursos estáticos
-│   ├── Logo.png          # Logo da aplicação
-│   └── Screenshot_*.png  # Screenshots para documentação
-├── components/           # Componentes reutilizáveis
-│   ├── CategoryModal.tsx
-│   ├── Sidebar.tsx
-│   └── TransactionModal.tsx
-├── pages/               # Páginas da aplicação
-│   ├── Categories.tsx
-│   ├── Comparison.tsx
-│   ├── Dashboard.tsx
-│   ├── Login.tsx
-│   ├── Register.tsx
-│   └── Transactions.tsx
-├── services/            # Serviços e API
-│   └── api.ts
-├── App.tsx              # Componente principal
-├── main.tsx            # Entry point
-└── index.css           # Estilos globais
-```
-
----
-
-## 🎨 Design System
-
-### Cores Padrão
-- **Receitas**: Emerald (verde) - `#10b981`
-- **Despesas**: Rose (vermelho) - `#f43f5e`
-- **Saldo Positivo**: Sky (azul) - `#38bdf8`
-- **Saldo Negativo**: Rose (vermelho) - `#f43f5e`
-
-### Paleta de Cores do Gráfico de Pizza
-```
-#f43f5e (Rose)     #f97316 (Orange)   #eab308 (Yellow)
-#22c55e (Green)    #14b8a6 (Teal)      #06b6d4 (Cyan)
-#3b82f6 (Blue)    #6366f1 (Indigo)    #8b5cf6 (Violet)
-#a855f7 (Purple)
+/
+├── public/
+│   ├── images/           # Screenshots para docs
+│   └── Logo.png         # Logo do app
+├── src/
+│   ├── pages/          # Páginas React
+│   │   ├── Login.tsx
+│   │   ├── Register.tsx
+│   │   ├── Dashboard.tsx
+│   │   ├── Transactions.tsx
+│   │   ├── Categories.tsx
+│   │   └── Comparison.tsx
+│   ├── components/       # Componentes
+│   │   ├── Sidebar.tsx
+│   │   ├── VoiceFAB.tsx
+│   │   ├── TransactionModal.tsx
+│   │   └── CategoryModal.tsx
+│   ├── services/        # Serviços
+│   │   ├── api.ts
+│   │   └── biometric.ts
+│   └── assets/
+│       └── Logo.png
+├── Granafiel-Android/  # Projeto Android (Capacitor)
+├── Granafiel-Backend/  # API Node.js
+└── Granafiel.apk      # App Mobile
 ```
 
 ---
 
-## ▶️ Como Executar
+## 🚦 Começando
 
-### Pré-requisitos
-- Node.js 18+ 
-- NPM ou Yarn
-
-### Instalação
+### 🌐 Versão Web
 
 ```bash
-# Clone o repositório
-git clone https://github.com/jairalvarengapereira/GestaoFinanceira-Frontend.git
-
-# Entre no diretório
-cd GestaoFinanceira-Frontend
-
-# Instale as dependências
+# Instalar dependências
 npm install
-```
 
-### Configuração
-
-Crie um arquivo `.env` na raiz do projeto:
-
-```env
-VITE_API_URL=http://localhost:3000
-```
-
-### Executando o Projeto
-
-```bash
-# Modo desenvolvimento
+# Executar em desenvolvimento
 npm run dev
 
 # Build para produção
 npm run build
+```
 
-# Preview do build
-npm run preview
+Acesse: **https://granafiel.netlify.app**
+
+### 📱 Versão Mobile (Android)
+
+1. Baixe a APK: [Granafiel.apk](https://github.com/jairalvarengapereira/granafiel/raw/main/Granafiel.apk)
+2. Enable "Install unknown apps" nas configurações
+3. Abra o arquivo e instale
+4. Pronto! Use offline ou conecte à API
+
+### ⚙️ Configuração
+
+Crie `.env` na raiz:
+
+```env
+VITE_API_URL=https://sua-api-aqui.com
 ```
 
 ---
 
-## 📱 Responsividade
+## 🔗 Links Úteis
 
-A aplicação é totalmente responsiva e funciona em:
-- 📱 Mobile (< 640px)
-- 📱 Tablet (640px - 1024px)
-- 💻 Desktop (> 1024px)
-
----
-
-## 🔄 Integração com API
-
-Este frontend foi desenvolvido para integração com uma API REST. As principais funcionalidades esperadas da API:
-
-- `GET /transactions` - Listar transações
-- `POST /transactions` - Criar transação
-- `PUT /transactions/:id` - Atualizar transação
-- `DELETE /transactions/:id` - Excluir transação
-- `GET /categories` - Listar categorias
-- `POST /auth/login` - Login
-- `POST /auth/register` - Registro
+| Recurso | Link |
+|---------|------|
+| 🌐 **Web App** | https://granafiel.netlify.app |
+| 📱 **APK** | https://github.com/jairalvarengapereira/granafiel/raw/main/Granafiel.apk |
+| 📖 **Manual** | https://github.com/jairalvarengapereira/granafiel/blob/main/MANUAL.md |
+| 💻 **Código** | https://github.com/jairalvarengapereira/granafiel |
 
 ---
 
 ## 📝 Licença
 
-Este projeto está sob a licença MIT.
-
----
-
-## 👨‍💻 Autor
-
-**Jair Alvarenga Pereira**
-
-- GitHub: [@jairalvarengapereira](https://github.com/jairalvarengapereira)
+MIT License - Jair Alvarenga Pereira
 
 ---
 
 <div align="center">
 
-Made with ❤️ using React + TypeScript + Tailwind
+Feito com ❤️ para ajudá-lo a controlar suas finanças
+
+<img src="public/Logo.png" alt="Logo" width="60" />
 
 </div>
