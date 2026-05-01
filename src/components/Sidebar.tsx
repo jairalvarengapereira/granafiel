@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-import { LayoutDashboard, Receipt, Tag, LogOut, X, BarChart3, BookOpen } from 'lucide-react'
+import { LayoutDashboard, Receipt, Tag, LogOut, X, BarChart3, BookOpen, HelpCircle } from 'lucide-react'
 
 interface SidebarProps {
   onLogout: () => void
@@ -22,7 +22,8 @@ const Sidebar = ({ onLogout, isOpen, onClose }: SidebarProps) => {
     { name: 'Transações', path: '/transactions', icon: Receipt },
     { name: 'Comparativo', path: '/comparison', icon: BarChart3 },
     { name: 'Categorias', path: '/categories', icon: Tag },
-    { name: 'Manual', path: '/manual', icon: BookOpen, external: true },
+    { name: 'Manual', path: 'https://github.com/jairalvarengapereira/granafiel/blob/main/MANUAL.md', icon: BookOpen, external: true, newTab: true },
+    { name: 'Ajuda', path: '/manual', icon: HelpCircle, external: true },
     { name: 'Sair', path: '/logout', icon: LogOut, isLogout: true },
   ]
 
