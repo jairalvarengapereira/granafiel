@@ -74,6 +74,9 @@ const Comparison = () => {
   const showCurrent = availableMonths.includes(currentMonthKey)
 
   const selectedMonthData = monthlyData.find(m => m.month === selectedMonth)
+  const chartData = selectedMonth 
+    ? monthlyData.filter(m => m.month === selectedMonth)
+    : monthlyData
   const selectedMonthReceitas = selectedMonth 
     ? (selectedMonthData?.receita || 0)
     : totalReceitas
@@ -214,7 +217,7 @@ const Comparison = () => {
         </div>
         {monthlyData.length > 0 ? (
           <ResponsiveContainer width="100%" height="85%">
-            <BarChart data={monthlyData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+            <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
               <defs>
                 <linearGradient id="colorReceitaBar" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="0%" stopColor="#10b981"/>
