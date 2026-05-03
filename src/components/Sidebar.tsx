@@ -101,7 +101,7 @@ const Sidebar = ({ onLogout, isOpen, onClose }: SidebarProps) => {
       </nav>
 
       <div className="text-xs text-slate-600 mt-4 px-2 text-center">
-        <p>Copyright @ Jair Alvarenga Pereira</p>
+        <p>Copyright @ 2026 Jair Alvarenga Pereira</p>
       </div>
     </aside>
   )
