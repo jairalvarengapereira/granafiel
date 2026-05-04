@@ -215,7 +215,7 @@ const Comparison = () => {
             Receitas vs Despesas
           </h2>
         </div>
-        {monthlyData.length > 0 ? (
+        {chartData.length > 0 ? (
           <ResponsiveContainer width="100%" height="85%">
             <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
               <defs>
