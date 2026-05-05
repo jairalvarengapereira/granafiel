@@ -40,20 +40,25 @@ const Comparison = () => {
     const date = new Date(t.data)
     const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`
     
+    const isReceita = t.tipo?.toLowerCase() === 'receita'
+    const isDespesaPaga = t.tipo?.toLowerCase() === 'despesa' && t.status === 'pago'
+    
+    if (!isReceita && !isDespesaPaga) return acc
+    
     const existing = acc.find(item => item.month === monthKey)
     if (existing) {
-      if (t.tipo?.toLowerCase() === 'receita') {
+      if (isReceita) {
         existing.receita += Number(t.valor)
-      } else {
+      } else if (isDespesaPaga) {
         existing.despesa += Number(t.valor)
       }
       existing.diferenca = existing.receita - existing.despesa
     } else {
       acc.push({
         month: monthKey,
-        receita: t.tipo?.toLowerCase() === 'receita' ? Number(t.valor) : 0,
-        despesa: t.tipo?.toLowerCase() === 'despesa' ? Number(t.valor) : 0,
-        diferenca: t.tipo?.toLowerCase() === 'receita' ? Number(t.valor) : -Number(t.valor)
+        receita: isReceita ? Number(t.valor) : 0,
+        despesa: isDespesaPaga ? Number(t.valor) : 0,
+        diferenca: isReceita ? Number(t.valor) : -Number(t.valor)
       })
     }
     return acc

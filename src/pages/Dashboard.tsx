@@ -89,11 +89,18 @@ const Dashboard = () => {
     return null
   }
 
-  const balance = transactions?.reduce((acc: number, t: any) => 
-    t.tipo?.toLowerCase() === 'receita' ? acc + Number(t.valor) : acc - Number(t.valor), 0) || 0
+  const balance = transactions?.reduce((acc: number, t: any) => {
+    if (t.tipo?.toLowerCase() === 'receita') {
+      return acc + Number(t.valor)
+    }
+    if (t.tipo?.toLowerCase() === 'despesa' && t.status === 'pago') {
+      return acc - Number(t.valor)
+    }
+    return acc
+  }, 0) || 0
   const income = transactions?.filter((t: any) => t.tipo?.toLowerCase() === 'receita')
     .reduce((acc: number, t: any) => acc + Number(t.valor), 0) || 0
-  const expenses = transactions?.filter((t: any) => t.tipo?.toLowerCase() === 'despesa')
+  const expenses = transactions?.filter((t: any) => t.tipo?.toLowerCase() === 'despesa' && t.status === 'pago')
     .reduce((acc: number, t: any) => acc + Number(t.valor), 0) || 0
 
   if (isLoading) return (
