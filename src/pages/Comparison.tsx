@@ -41,7 +41,8 @@ const Comparison = () => {
     const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`
     
     const isReceita = t.tipo?.toLowerCase() === 'receita'
-    const isDespesaPaga = t.tipo?.toLowerCase() === 'despesa' && t.status === 'pago'
+    const isPago = t.status === 'pago' || t.status?.toLowerCase() === 'pago'
+    const isDespesaPaga = t.tipo?.toLowerCase() === 'despesa' && isPago
     
     if (!isReceita && !isDespesaPaga) return acc
     

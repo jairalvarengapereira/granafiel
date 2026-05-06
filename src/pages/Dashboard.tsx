@@ -93,7 +93,8 @@ const Dashboard = () => {
     if (t.tipo?.toLowerCase() === 'receita') {
       return acc + Number(t.valor)
     }
-    if (t.tipo?.toLowerCase() === 'despesa' && t.status === 'pago') {
+    const isPago = t.status === 'pago' || t.status?.toLowerCase() === 'pago'
+    if (t.tipo?.toLowerCase() === 'despesa' && isPago) {
       return acc - Number(t.valor)
     }
     return acc
