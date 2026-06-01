@@ -59,6 +59,13 @@ const Transactions = () => {
       )
     : filteredTransactions
 
+  const sortedTransactions = searchedTransactions?.slice().sort((a: any, b: any) => {
+    const aIsPago = a.status === 'pago' || a.status?.toLowerCase() === 'pago'
+    const bIsPago = b.status === 'pago' || b.status?.toLowerCase() === 'pago'
+    if (aIsPago !== bIsPago) return aIsPago ? 1 : -1
+    return new Date(b.data).getTime() - new Date(a.data).getTime()
+  })
+
   const deleteMutation = useMutation({
     mutationFn: async (id: number) => {
       await api.delete(`/transactions/${id}`)
@@ -129,7 +136,7 @@ const Transactions = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-700/30">
-                {searchedTransactions?.map((t: any) => (
+                {sortedTransactions?.map((t: any) => (
                   <tr key={t.id} className="group hover:bg-slate-700/10 transition-all">
                     <td className="py-4 font-medium">{t.descricao}</td>
                     <td className="py-4">

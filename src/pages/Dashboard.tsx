@@ -90,11 +90,12 @@ const Dashboard = () => {
   }
 
   const balance = transactions?.reduce((acc: number, t: any) => {
+    const isPago = t.status === 'pago' || t.status?.toLowerCase() === 'pago'
+    if (!isPago) return acc
     if (t.tipo?.toLowerCase() === 'receita') {
       return acc + Number(t.valor)
     }
-    const isPago = t.status === 'pago' || t.status?.toLowerCase() === 'pago'
-    if (t.tipo?.toLowerCase() === 'despesa' && isPago) {
+    if (t.tipo?.toLowerCase() === 'despesa') {
       return acc - Number(t.valor)
     }
     return acc
